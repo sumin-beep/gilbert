@@ -440,13 +440,18 @@
   }
   .role{
     display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:18px 0;
+    flex-direction:column;
+    padding:24px 0;
     border-bottom:1px solid var(--line);
-    gap:16px;
+    gap:0;
   }
   .role:first-child{ padding-top:0; }
+  .role-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:16px;
+  }
   .role-title{
     font-size:15px;
     font-weight:400;
@@ -463,10 +468,9 @@
     font-size:13px;
     color:var(--text-mid);
     margin-top:8px;
-    max-width:340px;
+    max-width:420px;
     line-height:1.55;
   }
-  .role{ align-items:flex-start; }
   .role-tag{
     font-family:'JetBrains Mono', monospace;
     font-size:10px;
@@ -477,6 +481,79 @@
     padding:5px 10px;
     border-radius:16px;
     white-space:nowrap;
+  }
+  .role-toggle{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:16px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--silver-2);
+    background:none;
+    border:none;
+    padding:0;
+    cursor:pointer;
+    transition:color .2s ease;
+  }
+  .role-toggle:hover{ color:var(--text-hi); }
+  .role-toggle .chev{
+    display:inline-block;
+    transition:transform .25s ease;
+    font-size:9px;
+  }
+  .role-toggle.open .chev{ transform:rotate(180deg); }
+  .role-jd{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s ease;
+  }
+  .role-jd-inner{
+    padding-top:24px;
+    max-width:640px;
+  }
+  .role-jd h4{
+    font-family:'Manrope', sans-serif;
+    font-size:14px;
+    font-weight:600;
+    color:var(--text-hi);
+    margin-top:22px;
+    letter-spacing:0.01em;
+  }
+  .role-jd h4:first-child{ margin-top:0; }
+  .role-jd h5{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--silver-1);
+    margin-top:18px;
+    margin-bottom:8px;
+  }
+  .role-jd p{
+    font-size:13.5px;
+    color:var(--text-mid);
+    line-height:1.65;
+    margin-top:8px;
+  }
+  .role-jd ul{
+    margin-top:8px;
+    padding-left:18px;
+  }
+  .role-jd li{
+    font-size:13.5px;
+    color:var(--text-mid);
+    line-height:1.65;
+    margin-top:6px;
+  }
+  .role-jd .meta-line{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.05em;
+    color:var(--text-low);
+    margin-bottom:4px;
   }
 
   /* ---------- org chart ---------- */
@@ -839,20 +916,224 @@
         </div>
         <div class="roles-list">
           <div class="role">
-            <div>
-              <div class="role-title">Head of Design, Development &amp; Construction</div>
-              <div class="role-dept">Architect / Engineer / General Contractor for Pharmacies</div>
-              <div class="role-desc">Leads the planning, design, and build-out of compounding pharmacy facilities end to end &mdash; translating regulatory and operational requirements into functional, compliant, and scalable facility designs, then overseeing construction from permitting through completion. Works closely with pharmacy clients, regulators, subcontractors, and internal teams to ensure every project is built right from the ground up.</div>
+            <div class="role-top">
+              <div>
+                <div class="role-title">Head of Design, Development &amp; Construction</div>
+                <div class="role-dept">Architect / Engineer / General Contractor for Pharmacies</div>
+                <div class="role-desc">Leads the planning, design, and build-out of compounding pharmacy facilities end to end &mdash; translating regulatory and operational requirements into functional, compliant, and scalable facility designs, then overseeing construction from permitting through completion. Works closely with pharmacy clients, regulators, subcontractors, and internal teams to ensure every project is built right from the ground up.</div>
+              </div>
+              <a href="apply.html?role=design" class="role-tag">Hiring</a>
             </div>
-            <a href="apply.html?role=design" class="role-tag">Hiring</a>
+            <button type="button" class="role-toggle" data-target="jd-design" aria-expanded="false">Read full job description <span class="chev">&#9660;</span></button>
+            <div class="role-jd" id="jd-design">
+              <div class="role-jd-inner">
+                <div class="meta-line">Reports To: Director of Pharmacy Development &amp; Operations | Location: Remote (Travel Required) | Type: Full-Time</div>
+
+                <h4>Position Overview</h4>
+                <p>The Head of Design, Development, &amp; Construction will own the entire end to end process of launching new compounding pharmacies nationally. This will include site selection, feasibility, budgeting, design team &amp; contractor selection, project management, build-out, and regulatory readiness of all Gilbert pharmacy facilities. Reporting to the Director of Pharmacy Development &amp; Operations, this role bridges pharmacy operations expertise with construction, facilities engineering, and regulatory compliance to bring new pharmacy sites from concept through licensure and go-live. The ideal candidate has hands-on experience designing and building efficient commercial spaces and pharmacy environments including traditional 503A compounding pharmacies and FDA-registered 503B outsourcing facilities operating under current Good Manufacturing Practice (cGMP) Standards. Their thorough knowledge enables them to successfully navigate state and federal regulations required for pharmacy facility approval.</p>
+                <p>At , every role is AI-first. Work starts in an LLM to clarify intent and context, moves into the right tools to explore and execute, is tested with real users and stakeholders, and is continuously refined as we learn. AI and self-serve research are default parts of how we work, not side experiments.</p>
+                <p>We are looking for people who take full ownership of their work, treat AI as a real collaborator, and care deeply about building a company that meaningfully improves how healthcare is delivered.</p>
+
+                <h4>What You'll Do</h4>
+                <ul>
+                  <li><strong>Work AI-first:</strong> Use LLMs as your starting point &mdash; to clarify thinking, draft output, research problems, and move faster. Apply your own judgment to refine quality and make it count.</li>
+                  <li><strong>Validate and iterate:</strong> Test your work with real users and stakeholders. Use what you learn to improve before problems become patterns.</li>
+                  <li><strong>Share AI-native workflows:</strong> Document prompts, processes, and workflows that work. Share them across your team so we raise the bar together.</li>
+                </ul>
+
+                <h4>We're Looking For</h4>
+                <p>You think outside of the box, excel at creative problem-solving, and are comfortable taking on projects that you have potentially never done before! You are a people-person - empathetic, self-aware, low ego, and extremely positive - and are comfortable working in a small collaborative team where you'll wear many hats. You have care for performance, accessibility, and reliability as part of craft. You are passionate and proficient in written and verbal communication, and comfort pairing with designers, engineers, and marketers.</p>
+
+                <h4>Key Responsibilities</h4>
+
+                <h5>Acquisition</h5>
+                <ul>
+                  <li>Lead market analysis and site selection to identify viable pharmacy locations nationally.</li>
+                  <li>Conduct feasibility assessments and due diligence on prospective sites, evaluating regulatory feasibility, build-out complexity, and operational suitability.</li>
+                  <li>Develop and execute entitlement strategy for new pharmacy locations in coordination with legal and operations teams.</li>
+                  <li>Act as liaison between landlords, brokers, and Gilbert on your prospective sites.</li>
+                  <li>Coordinate with internal stakeholders to supply landlords and brokers with essential company information to secure new leases and site acquisitions.</li>
+                </ul>
+
+                <h5>Entitlements</h5>
+                <ul>
+                  <li>Navigate land use and zoning requirements for each new pharmacy site.</li>
+                  <li>Lead master plan coordination and manage environmental compliance obligations across all facility projects.</li>
+                  <li>Oversee community outreach efforts and represent Gilbert at public hearings as needed.</li>
+                  <li>Coordinate regulatory submissions and interface directly with operations team on state Boards of Pharmacy, DEA, FDA, and local authorities for facility inspections and approvals.</li>
+                  <li>Develop and maintain a facility compliance playbook for new site design and existing facility modifications.</li>
+                </ul>
+
+                <h5>Design</h5>
+                <ul>
+                  <li>Lead concept and programming strategy for all new pharmacy facilities, translating operational workflows into effective, compliant physical environments.</li>
+                  <li>Manage design team selection and coordination, including architects, MEP engineers, and specialty consultants.</li>
+                  <li>Lead the architectural design and space planning for new pharmacy locations, including compounding suites, sterile and non-sterile areas, clean rooms, and dispensing environments.</li>
+                  <li>Develop detailed facility design standards and specifications aligned with USP &lt;795&gt;, USP &lt;797&gt;, USP &lt;800&gt;, applicable state Board of Pharmacy requirements, and FDA cGMP requirements for 503B outsourcing facilities.</li>
+                  <li>Review and approve architectural drawings, construction documents, and engineering plans for all new pharmacy projects.</li>
+                  <li>Design scalable production environments for 503A and 503B operations, including batch manufacturing areas, quarantine/release zones, and controlled material flow segregation.</li>
+                  <li>Develop HVAC, cleanroom, airflow, and environmental monitoring specifications in coordination with engineering and operating partners.</li>
+                  <li>Coordinate with operating partners to ensure facility design supports validated processes, environmental monitoring programs, and batch production controls.</li>
+                </ul>
+
+                <h5>Pre-Con</h5>
+                <ul>
+                  <li>Develop project budgets and oversee value engineering exercises to optimize cost without compromising regulatory or operational standards.</li>
+                  <li>Lead GC selection processes, evaluating contractors for pharmacy build-out experience, compliance track record, and execution capability.</li>
+                  <li>Manage permit management across all active projects, ensuring timely approvals from local building authorities and regulatory bodies.</li>
+                  <li>Develop and track project timelines, procurement schedules, and risk mitigation plans across multiple concurrent site developments.</li>
+                </ul>
+
+                <h5>Construction</h5>
+                <ul>
+                  <li>Serve as Owner's representative throughout construction, maintaining accountability for design intent, budget, and schedule.</li>
+                  <li>Provide field oversight through regular site inspections and quality walkthroughs to ensure regulatory and operational standards are met.</li>
+                  <li>Maintain rigorous cost control across all active build-outs, managing change orders and contractor performance.</li>
+                  <li>Oversee FF&amp;E installation and commissioning of all pharmacy-specific equipment and systems.</li>
+                  <li>Manage QA &amp; closeout activities including installation qualifications of critical manufacturing utilities (e.g., WFI systems, clean steam, environmental monitoring) where applicable to 503A and 503B facilities.</li>
+                  <li>Drive operational readiness in partnership with pharmacy operations and quality teams, ensuring facilities are inspection-ready as soon as possible.</li>
+                  <li>Maintain up-to-date documentation including as-built drawings, equipment lists, and SOPs for all facility environments.</li>
+                  <li>Support evaluation of pharmacy partners by assessing the design and regulatory readiness of their existing facilities.</li>
+                </ul>
+
+                <h4>Qualifications</h4>
+
+                <h5>Required</h5>
+                <ul>
+                  <li>Bachelor's degree in Architecture, Engineering (Mechanical, Civil, or Chemical), Pharmacy, or a closely related field; advanced degree or licensure preferred.</li>
+                  <li>5+ years of experience designing, building, or commissioning pharmacy facilities, healthcare environments, or regulated laboratory/cleanroom spaces.</li>
+                  <li>Ability to understand/learn USP &lt;795&gt;, USP &lt;797&gt;, USP &lt;800&gt;, and applicable state Board of Pharmacy facility requirements.</li>
+                  <li>Demonstrated project management experience overseeing construction projects from design through commissioning.</li>
+                  <li>Experience interfacing with regulatory agencies on facility approvals and inspections.</li>
+                  <li>Proficiency with architectural drawings, construction documents, and facility engineering specifications.</li>
+                  <li>Experience designing or supporting sterile manufacturing or 503B outsourcing facilities operating under cGMP environments strongly preferred.</li>
+                  <li>Ability to travel to pharmacy sites as needed for construction oversight, inspections, and go-live support.</li>
+                </ul>
+
+                <h5>Preferred</h5>
+                <ul>
+                  <li>Licensed Architect (AIA), Professional Engineer (PE), or Certified Pharmaceutical Industry Professional (CPIP).</li>
+                  <li>Familiarity with digital health or telehealth-linked pharmacy models.</li>
+                  <li>Strong vendor management experience working with contractors, engineers, and equipment suppliers.</li>
+                </ul>
+
+                <h4>What Success Looks Like (First 12 Months)</h4>
+                <ul>
+                  <li>Documented pharmacy facility design standards and a reusable build-out playbook for new sites.</li>
+                  <li>Streamlined project flow to maximize efficiency and completion time per project.</li>
+                  <li>Documented budgets for all existing and prospective sites with cost efficient suggestions to scale nationally.</li>
+                  <li>Successful delivery of at least three to five new 503A pharmacy facilities on time, on budget, and licensed for operation.</li>
+                  <li>Successful delivery of at least one 503B pharmacy facility on time, on budget, and licensed for operation.</li>
+                  <li>All existing partner facilities assessed and documented against Gilbert's compliance standards.</li>
+                  <li>Strong cross-functional relationships established with pharmacy operations, contracting, and external vendor teams.</li>
+                </ul>
+              </div>
+            </div>
           </div>
+
           <div class="role">
-            <div>
-              <div class="role-title">Head of Procurement &amp; Supply Chain</div>
-              <div class="role-dept">&nbsp;</div>
-              <div class="role-desc">Owns sourcing and vendor relationships for equipment, materials, and supplies used across our pharmacy projects. Focuses on building reliable, cost-effective supply chains that meet the quality and compliance standards compounding pharmacies require.</div>
+            <div class="role-top">
+              <div>
+                <div class="role-title">Head of Procurement &amp; Supply Chain</div>
+                <div class="role-dept">&nbsp;</div>
+                <div class="role-desc">Owns sourcing and vendor relationships for equipment, materials, and supplies used across our pharmacy projects. Focuses on building reliable, cost-effective supply chains that meet the quality and compliance standards compounding pharmacies require.</div>
+              </div>
+              <a href="apply.html?role=procurement" class="role-tag">Hiring</a>
             </div>
-            <a href="apply.html?role=procurement" class="role-tag">Hiring</a>
+            <button type="button" class="role-toggle" data-target="jd-procurement" aria-expanded="false">Read full job description <span class="chev">&#9660;</span></button>
+            <div class="role-jd" id="jd-procurement">
+              <div class="role-jd-inner">
+                <div class="meta-line">Reports To: Director of Pharmacy Development &amp; Operations | Location: Remote (Travel Required) | Type: Full-Time</div>
+
+                <h4>Position Overview</h4>
+                <p>The Head of Procurement &amp; Supply Chain will oversee and direct all sourcing, procurement, and supply chain activities for Gilbert's compounding pharmacy network. This position plays a vital role in maintaining a consistent supply of Active Pharmaceutical Ingredients (APIs), compounding materials, packaging materials, and other essential supplies needed for both 503A (patient-specific compounding) and 503B (outsourcing facility) operations. Reporting to the Director of Pharmacy Development &amp; Operations, you'll develop vendor partnerships, negotiate agreements, manage inventory systems, and ensure compliance with FDA, USP, and cGMP standards for efficient and compliant pharmacy operations.</p>
+
+                <h4>Key Responsibilities</h4>
+
+                <h5>Strategic Procurement &amp; Vendor Management</h5>
+                <ul>
+                  <li>Develop and implement comprehensive procurement strategies for APIs, excipients, and compounding materials that ensure quality, compliance, cost-effectiveness, and supply continuity.</li>
+                  <li>Establish and maintain relationships with FDA-registered API suppliers, ensuring all materials meet USP/NF standards and cGMP requirements.</li>
+                  <li>Negotiate contracts, pricing, and terms with suppliers while maintaining quality standards and regulatory compliance.</li>
+                  <li>Build redundancy in the supply chain with qualified backup vendors for critical materials.</li>
+                  <li>Manage vendor qualification, audits, and ongoing performance evaluation programs.</li>
+                </ul>
+
+                <h5>API &amp; Raw Material Sourcing</h5>
+                <ul>
+                  <li>Source and procure Active Pharmaceutical Ingredients (APIs) from FDA-registered suppliers with appropriate Drug Master Files (DMFs).</li>
+                  <li>Ensure all APIs are accompanied by Certificates of Analysis (CoA) and meet compendial specifications.</li>
+                  <li>Manage procurement of excipients, preservatives, stabilizers, and other compounding ingredients.</li>
+                  <li>Coordinate with Quality Assurance on material testing and release procedures.</li>
+                  <li>Maintain current knowledge of API availability, market conditions, and alternative sources.</li>
+                </ul>
+
+                <h5>503A &amp; 503B Compliance Materials</h5>
+                <ul>
+                  <li>Procure all materials necessary for regulatory compliance including environmental monitoring supplies (air sampling, surface testing), cleanroom supplies (garments, gloves, disinfectants), quality control testing materials and reference standards, sterility testing supplies and media, and endotoxin testing materials.</li>
+                  <li>Ensure all materials meet requirements for sterile and non-sterile compounding environments.</li>
+                  <li>Maintain documentation supporting regulatory inspections (FDA, state boards of pharmacy).</li>
+                </ul>
+
+                <h5>Equipment, Packaging &amp; Fulfillment Materials</h5>
+                <ul>
+                  <li>Source and procure compounding equipment (balances, hoods, autoclaves, ovens, etc.) and laboratory equipment for quality testing.</li>
+                  <li>Manage procurement of facility infrastructure materials for ISO-classified cleanrooms, including HVAC filters and environmental controls.</li>
+                  <li>Procure primary packaging (vials, syringes, bottles, jars) and secondary packaging materials (boxes, labels, shipping containers) that meet FDA and USP container closure requirements.</li>
+                  <li>Coordinate with fulfillment operations on shipping supplies, cold chain packaging, and temperature monitoring devices.</li>
+                </ul>
+
+                <h5>Inventory &amp; Supply Chain Management</h5>
+                <ul>
+                  <li>Develop and maintain inventory management systems for APIs, excipients, and supplies.</li>
+                  <li>Implement just-in-time and safety stock strategies balancing carrying costs with supply security.</li>
+                  <li>Monitor expiration dates and coordinate material rotation with pharmacy operations.</li>
+                  <li>Establish KPIs for inventory turnover, stock-out prevention, and cost management.</li>
+                  <li>Implement ERP or inventory management software systems.</li>
+                </ul>
+
+                <h5>Cross-Functional Collaboration &amp; Team Leadership</h5>
+                <ul>
+                  <li>Partner with Quality Assurance on vendor qualification, material specifications, and CoA review.</li>
+                  <li>Collaborate with Compounding Operations to forecast material needs and prevent production delays.</li>
+                  <li>Work with Regulatory Affairs to ensure procurement practices support licensure and inspections.</li>
+                  <li>Build and lead a procurement and supply chain team; develop SOPs for all procurement activities.</li>
+                  <li>Foster a culture of compliance, quality, and continuous improvement.</li>
+                </ul>
+
+                <h4>Qualifications</h4>
+
+                <h5>Required</h5>
+                <ul>
+                  <li>7+ years of progressive procurement and supply chain experience with at least 5 years in pharmaceutical manufacturing, compounding, or related healthcare industry.</li>
+                  <li>Direct experience with 503A and/or 503B compounding pharmacy operations strongly preferred.</li>
+                  <li>Deep understanding of FDA regulations for 503A and 503B compounding pharmacies, USP Chapters &lt;795&gt;, &lt;797&gt;, and &lt;800&gt; requirements, and cGMP for pharmaceutical manufacturing.</li>
+                  <li>Experience with API sourcing from FDA-registered suppliers and pharmaceutical raw material procurement.</li>
+                  <li>Knowledge of sterile compounding, aseptic processing, cleanroom operations, and pharmaceutical quality systems.</li>
+                  <li>Strong negotiation and contract management skills with proven vendor relationship management abilities.</li>
+                  <li>Proficiency with ERP systems, inventory management software, and procurement platforms.</li>
+                  <li>Bachelor's degree in Supply Chain Management, Business Administration, Pharmacy, or related field required.</li>
+                </ul>
+
+                <h5>Preferred</h5>
+                <ul>
+                  <li>Certified Professional in Supply Management (CPSM)</li>
+                  <li>Pharmacy Technician Certification (CPhT).</li>
+                  <li>Experience working within a startup or high-growth healthcare company.</li>
+                  <li>Existing relationships with API suppliers and pharmaceutical material vendors.</li>
+                </ul>
+
+                <h4>What Success Looks Like (First 12 Months)</h4>
+                <ul>
+                  <li>Qualified vendor network established for APIs, excipients, and all critical materials with backup suppliers in place.</li>
+                  <li>Inventory management system implemented with zero stock-outs impacting production.</li>
+                  <li>All materials sourced meet FDA, USP, and cGMP requirements with full documentation supporting regulatory inspections.</li>
+                  <li>Cost savings achieved through strategic sourcing and contract negotiations without compromising quality.</li>
+                  <li>Strong collaborative partnerships established with Quality Assurance, Operations, and Regulatory Affairs teams.</li>
+                  <li>Standardized procurement SOPs documented and team trained on compliance requirements.</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -901,6 +1182,26 @@
     <div class="footer-legal">Placeholder site — built for hiring launch. © 2026 Gilbert Pharmaceutical LLC.</div>
   </div>
 </footer>
+
+<script>
+  document.querySelectorAll('.role-toggle').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var target = document.getElementById(btn.getAttribute('data-target'));
+      var isOpen = btn.classList.contains('open');
+      if (isOpen){
+        target.style.maxHeight = null;
+        btn.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.childNodes[0].textContent = 'Read full job description ';
+      } else {
+        target.style.maxHeight = target.scrollHeight + 'px';
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        btn.childNodes[0].textContent = 'Hide job description ';
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
