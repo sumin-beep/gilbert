@@ -217,36 +217,6 @@
     font-weight:500;
   }
 
-  /* file upload */
-  .file-drop{
-    border:1px dashed var(--line);
-    border-radius:var(--radius);
-    padding:32px 20px;
-    text-align:center;
-    cursor:pointer;
-    transition:border-color .2s ease, background .2s ease;
-    position:relative;
-  }
-  .file-drop:hover{ border-color:var(--silver-2); background:rgba(255,255,255,0.02); }
-  .file-drop input[type="file"]{
-    position:absolute; inset:0; opacity:0; cursor:pointer;
-  }
-  .file-drop .fi-icon{
-    width:38px; height:38px; margin:0 auto 12px;
-    border-radius:50%;
-    border:1px solid var(--line);
-    display:flex; align-items:center; justify-content:center;
-    color:var(--silver-2);
-  }
-  .file-drop .fi-text{ font-size:13.5px; color:var(--text-mid); }
-  .file-drop .fi-text b{ color:var(--text-hi); font-weight:500; }
-  .file-drop .fi-name{
-    margin-top:10px; font-size:12.5px; color:var(--silver-2);
-    font-family:'JetBrains Mono', monospace;
-    display:none;
-  }
-  .file-drop.has-file .fi-name{ display:block; }
-
   .role-tag-select{ margin-top:6px; }
 
   /* submit */
@@ -375,8 +345,8 @@
       </div>
 
       <div class="field">
-        <label for="linkedin">LinkedIn profile <span class="opt">(optional)</span></label>
-        <input type="url" id="linkedin" name="LinkedIn" placeholder="https://linkedin.com/in/yourname">
+        <label for="linkedin"><span class="req">*</span>LinkedIn profile</label>
+        <input type="url" id="linkedin" name="LinkedIn" placeholder="https://linkedin.com/in/yourname" required>
       </div>
     </div>
 
@@ -395,19 +365,9 @@
       </div>
 
       <div class="field">
-        <label for="cover">Why are you a good fit? <span class="opt">(optional)</span></label>
-        <textarea id="cover" name="Cover note" placeholder="A few sentences about your background and why this role interests you."></textarea>
-      </div>
-
-      <div class="field">
-        <label><span class="req">*</span>Resume</label>
-        <div class="file-drop" id="resume-drop">
-          <div class="fi-icon">&uarr;</div>
-          <div class="fi-text"><b>Choose file</b> or drag and drop here</div>
-          <div class="fi-name" id="resume-name"></div>
-          <input type="file" id="resume" name="Resume" accept=".pdf,.doc,.docx,.odt,.rtf" required>
-        </div>
-        <div class="hint">Accepted formats: .pdf, .doc, .docx, .odt, .rtf</div>
+        <label for="resume_text"><span class="req">*</span>Resume</label>
+        <textarea id="resume_text" name="Resume text" required placeholder="Paste the full text of your resume here." style="min-height:280px;"></textarea>
+        <div class="hint" id="resume-counter">0 / 10,000 words</div>
       </div>
     </div>
 
@@ -468,17 +428,25 @@
     }
   })();
 
-  // File name preview
-  const resumeInput = document.getElementById('resume');
-  const resumeDrop = document.getElementById('resume-drop');
-  const resumeName = document.getElementById('resume-name');
-  resumeInput.addEventListener('change', function(){
-    if (this.files && this.files.length > 0){
-      resumeName.textContent = this.files[0].name;
-      resumeDrop.classList.add('has-file');
-    } else {
-      resumeDrop.classList.remove('has-file');
+  // Resume word counter, capped at 10,000 words
+  const resumeText = document.getElementById('resume_text');
+  const resumeCounter = document.getElementById('resume-counter');
+  const MAX_WORDS = 10000;
+
+  function countWords(str){
+    const trimmed = str.trim();
+    return trimmed === '' ? 0 : trimmed.split(/\s+/).length;
+  }
+
+  resumeText.addEventListener('input', function(){
+    let words = this.value.trim() === '' ? [] : this.value.trim().split(/\s+/);
+    if (words.length > MAX_WORDS){
+      this.value = words.slice(0, MAX_WORDS).join(' ');
+      words = words.slice(0, MAX_WORDS);
     }
+    const count = words.length;
+    resumeCounter.textContent = count.toLocaleString() + ' / ' + MAX_WORDS.toLocaleString() + ' words';
+    resumeCounter.style.color = count >= MAX_WORDS ? 'var(--err)' : 'var(--text-low)';
   });
 
   // AJAX submit to Formspree so we can show a nice inline confirmation
@@ -504,7 +472,8 @@
         statusMsg.className = 'status-msg ok show';
         statusMsg.textContent = "Thanks — your application has been submitted. We'll be in touch.";
         form.reset();
-        resumeDrop.classList.remove('has-file');
+        resumeCounter.textContent = '0 / 10,000 words';
+        resumeCounter.style.color = 'var(--text-low)';
         submitBtn.textContent = 'Submitted';
       } else {
         return response.json().then(data => {
